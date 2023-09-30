@@ -4,6 +4,8 @@ let currentTimeContainer = document.querySelector('.current-time-container')
 
 let newTimerId = 1
 let audio;
+
+//create time up function//
 function createTimeUp(beforeThis) {
   const element = document.createElement('div')
     element.classList.add('timeup-container')
@@ -12,7 +14,7 @@ function createTimeUp(beforeThis) {
             <button class="btn delete-btn" onclick="deleteCard(this)">delete</button>`
   currentTimeContainer.insertBefore(element, beforeThis)
 }
-
+//deleteCard//
 function deleteCard(target) {
   target.parentNode.remove()
   let noTimer = document.querySelector('.alert')
@@ -34,7 +36,7 @@ document.querySelector('.settime').addEventListener('click', (event) => {
   createNewTimer(totalTime)
   setToDefault();
 })
-
+//create NewTimer//
 function createNewTimer(totalTime) {
   let h = Math.floor(totalTime / 3600)
   let m = Math.floor((totalTime % 3600) / 60)
@@ -66,6 +68,8 @@ function createNewTimer(totalTime) {
   startTimer(totalTime, element)
 }
 
+//timer function//
+
 function startTimer(totalTime, thisCard) {
   let hr = thisCard.querySelector('.hh')
   let min = thisCard.querySelector('.mm')
@@ -74,8 +78,6 @@ function startTimer(totalTime, thisCard) {
   let intervalId = setInterval(() => {
     if (document.getElementById(thisCard.id) == null) {
       clearInterval(intervalId)
-    //    audio = new Audio('alarm.mp3')
-    //    audio.play()
       return
     }
     console.log(hr.innerText, min.innerText, sec.innerText)
@@ -103,7 +105,7 @@ function startTimer(totalTime, thisCard) {
 }
 
 
-
+//set to default function//
 
 function setToDefault(){
 hh.value='00'
