@@ -3,7 +3,7 @@
 let currentTimeContainer = document.querySelector('.current-time-container')
 
 let newTimerId = 1
-
+let audio;
 function createTimeUp(beforeThis) {
   const element = document.createElement('div')
     element.classList.add('timeup-container')
@@ -74,6 +74,8 @@ function startTimer(totalTime, thisCard) {
   let intervalId = setInterval(() => {
     if (document.getElementById(thisCard.id) == null) {
       clearInterval(intervalId)
+    //    audio = new Audio('alarm.mp3')
+    //    audio.play()
       return
     }
     console.log(hr.innerText, min.innerText, sec.innerText)
@@ -89,10 +91,13 @@ function startTimer(totalTime, thisCard) {
 
     if (totalTime < 0) {
       try {
+       
         createTimeUp(thisCard)
         thisCard.remove()
       } catch (error) {}
       clearInterval(intervalId)
+       audio = new Audio('alarm.mp3')
+       audio.play()
     }
   }, 1000)
 }
